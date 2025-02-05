@@ -6,7 +6,7 @@ export default function Show({montrerTodo}){
     }
     return(
         <>
-            <Button onClick={montrer} name="Show"/>
+            <Button onClick={montrer} name="Show all"/>
         </>
     )
 }

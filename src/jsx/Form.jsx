@@ -4,7 +4,8 @@ import './../style/form.css'
 export default function Form({addToDo}){
     const [inputValue, setInputValue] = useState("");
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         addToDo(inputValue);
         setInputValue("");
     };

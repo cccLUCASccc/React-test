@@ -6,9 +6,10 @@ import HideToDo from "./HideToDo";
 import Show from "./Show";
 
 export default function App() {
-    const LSKEY = "mytodosApp"
-    const [todos, setTodos] = useState([]);
-    const [HiddenTodo, setHiddenTodo] = useState([])
+    const LSKEY = "todos"
+    const LSKEY2 = "hiddentodos"
+    const [todos, setTodos] = useState(JSON.parse(localStorage.getItem(LSKEY)) ?? []);
+    const [HiddenTodo, setHiddenTodo] = useState(JSON.parse(localStorage.getItem(LSKEY2)) ?? [])
 
     const addToDo = (newToDo) => {
         if (newToDo.trim() !== "") {
@@ -40,17 +41,9 @@ export default function App() {
     };
 
     useEffect(() => {
-        const saved_todos = JSON.parse(localStorage.getItem(LSKEY))
-        if(Array.isArray(saved_todos)){
-            setTodos(saved_todos)
-            console.log(saved_todos)
-            console.log(todos)
-        }
-    }, [])
-   
-    useEffect(() => {
         localStorage.setItem(LSKEY, JSON.stringify(todos))
-    }, [todos])
+        localStorage.setItem(LSKEY2, JSON.stringify(HiddenTodo))
+    }, [todos, HiddenTodo])
 
     return (
         <>
