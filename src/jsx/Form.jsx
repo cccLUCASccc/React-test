@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Button from "./Button";
-
+import './../style/form.css'
 export default function Form({addToDo}){
     const [inputValue, setInputValue] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         addToDo(inputValue);
         setInputValue("");
     };

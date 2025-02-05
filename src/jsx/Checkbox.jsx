@@ -1,3 +1,5 @@
+import './../style/checkbox.css'
+
 export default function Checkbox({ checked, onChange }) {
     return (
         <div className="checkbox">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./Form";
 import ToDo from "./ToDo";
 import Suppresseur from "./Suppressur";
@@ -6,6 +6,7 @@ import HideToDo from "./HideToDo";
 import Show from "./Show";
 
 export default function App() {
+    const LSKEY = "mytodosApp"
     const [todos, setTodos] = useState([]);
     const [HiddenTodo, setHiddenTodo] = useState([])
 
@@ -38,10 +39,23 @@ export default function App() {
         setTodos(newTodos);
     };
 
+    useEffect(() => {
+        const saved_todos = JSON.parse(localStorage.getItem(LSKEY))
+        if(Array.isArray(saved_todos)){
+            setTodos(saved_todos)
+            console.log(saved_todos)
+            console.log(todos)
+        }
+    }, [])
+   
+    useEffect(() => {
+        localStorage.setItem(LSKEY, JSON.stringify(todos))
+    }, [todos])
+
     return (
         <>
             <div className="container">
-                <h1>🚩TODO LIST🚩  </h1>
+                <h1>🚩TODO LIST 🚩</h1>
                 <hr />
                 <Form addToDo={addToDo} />
                 <ToDo todos={todos} toggleCheck={toggleCheck} />

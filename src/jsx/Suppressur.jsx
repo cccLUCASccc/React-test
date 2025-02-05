@@ -1,5 +1,4 @@
 import Button from "./Button";
-
 export default function Suppresseur({ supprimerToDo }){
     const supprimer = () => {
         supprimerToDo();
